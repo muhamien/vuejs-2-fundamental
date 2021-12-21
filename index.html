@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue instance dan property</title>
+    <title>Data binding vue</title>
 </head>
 
 <body>
     <div id="app">
-        Nama: {{nama}}<br/>
-        Umur: {{umur}} Tahun
+        <h4>Nama : {{nama}}</h4>
+        <p>umur : {{umut}} tahun</p>
+        <span>Gender: {{gender ? "Laki-laki":"Perenpuan"}}</span>
+ 
+        
+        <h4 v-once>Nama : {{nama}}</h4>
+        <div v-html="raw"></div>
     </div>
     <!-- Development -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -19,13 +24,16 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
 
     <script>
-        new Vue({
+        var vm = new Vue({
             el: "#app",
             data: { 
                 nama: "Muhammad Amien",
                 umur: new Date().getFullYear()-1997,
+                raw:"<p>contoh paragraph</p>",
+                gender:true,
             },
         });
+        vm.nama = "Amien";
     </script>
 </body>
 
