@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loop list directive</title>
+    <title>Loop list methode</title>
 </head>
 
 <body>
     <div id="app"> 
         <h1>Loop v-for</h1>
-        <div v-for="(member, key, index) in members">
-            {{key}} : {{member}} - [{{index}}]
-        </div> 
+        <div v-for="member in members" :key="member.id" track-by="index">
+            {{member.nama}} umur {{member.umur}} tahun
+        </div>
     </div>
 
     <!-- Note -->
     <!-- 
-        Mengenal apa itu loop/list directive pada vuejs dan juga melihat 
-        contoh penggunaan list directive pada vue js 
+        Metode metode pada javascript bisa kita gunakan seperti biasa pada list directive vue js 
     -->
 
     <!-- Development -->
@@ -31,11 +30,11 @@
         var vm = new Vue({
             el: "#app",
             data: { 
-                members:{
-                    nama:"Amien",
-                    umur:24,
-                    language:"Indonesia",
-                },
+                members:[
+                    {id:1,nama:"Amien",umur:24},
+                    {id:2,nama:"Muhammad",umur:25},
+                    {id:3,nama:"Rauf",umur:27},
+                ]
             }, 
         }); 
     </script>
