@@ -5,19 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data binding vue</title>
+    <title>Computed properties</title>
 </head>
 
 <body>
     <div id="app">
-        <h4>Nama : {{nama}}</h4>
-        <p>umur : {{umut}} tahun</p>
-        <span>Gender: {{gender ? "Laki-laki":"Perenpuan"}}</span>
- 
-        
-        <h4 v-once>Nama : {{nama}}</h4>
-        <div v-html="raw"></div>
+        a = {{a}} <br>
+        b = {{b}} <br>
+        ---------------+ <br>
+        c = {{c}} <br>
+
+        {{biodata}} <br>
     </div>
+
+    <!-- Note -->
+    <!-- 
+        Membuat satu propery selalu tergantung dengan property 
+        lainnya dengan computed properties dari vue. 
+    -->
+
     <!-- Development -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <!-- Production -->
@@ -26,14 +32,28 @@
     <script>
         var vm = new Vue({
             el: "#app",
-            data: { 
-                nama: "Muhammad Amien",
-                umur: new Date().getFullYear()-1997,
-                raw:"<p>contoh paragraph</p>",
-                gender:true,
+            data: {
+                a: 5,
+                b: 2,
+                name: "Muhammad Amien",
+                umur: 24,
             },
-        });
-        vm.nama = "Amien";
+            computed: {
+                c: function () {
+                    return this.a + this.b;
+                },
+                biodata: {
+                    get: function () {
+                        return this.name+" Umur: "+ this.umur
+                    },
+                    set: function (params) {
+                        const credential = params.split(" ")
+                        this.name = credential[0]
+                        this.umur = credential[1]
+                    }
+                }
+            }
+        }); 
     </script>
 </body>
 
