@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Methods vuejs</title>
+    <title>V bind directive</title>
 </head>
 
 <body>
@@ -13,13 +13,14 @@
          <input type="text" v-on:keyup.enter="cekidot"/>
          <button v-on:click="boom('pesan berdarah')">Klik saya</button>
 
-         <a href="" @click.prevent="cekidot">Cekidot</a>
+         <a v-bind:href="url" target="_blank">Website</a>
+         <a v-bind:href="'https://google.com'" target="_blank">google.com</a>
+         <img :src="'https://api.unsplash.com/random'" alt="">
     </div>
 
     <!-- Note -->
     <!-- 
-        Belajar menggunakan methods pada vue js, dan juga menggabungkannya 
-        dengan event melalui v-on directive
+        Belajar lebih banyak tentang penggunaan v-on dan juga v-bind sebagai property pada vuejs
     -->
 
     <!-- Development -->
@@ -31,7 +32,7 @@
         var vm = new Vue({
             el: "#app",
             data: {  
-                 
+                 url:"https://muhammad-amien.web.app"
             },  
             methods:{
                 boom: function(text){
