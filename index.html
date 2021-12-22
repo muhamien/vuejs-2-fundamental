@@ -5,22 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V bind directive</title>
+    <title>Input binding</title>
 </head>
 
 <body>
-    <div id="app">  
-         <input type="text" v-on:keyup.enter="cekidot"/>
-         <button v-on:click="boom('pesan berdarah')">Klik saya</button>
+    <div id="app">
+        <input type="text" v-model="text">
+        <p>{{text}}</p>
 
-         <a v-bind:href="url" target="_blank">Website</a>
-         <a v-bind:href="'https://google.com'" target="_blank">google.com</a>
-         <img :src="'https://api.unsplash.com/random'" alt="">
+        <input type="checkbox" v-model="food" value="Pizza"> Pizza
+        <input type="checkbox" v-model="food" value="Sate"> Sate
+        <input type="checkbox" v-model="food" value="Bakso">Bakso
+        <input type="checkbox" v-model="food" value="Mie Ayam">Mie Ayam
+        <input type="checkbox" v-model="food" value="Burger">Burger
+        <p>{{food}}</p>
+
+
+        <input type="radio" v-model="gender" value="Cowo">Cowo
+        <input type="radio" v-model="gender" value="Cewe">Cewe
+        <input type="radio" v-model="gender" value="Unknown">Unknown
+        <p>{{gender}}</p>
+
     </div>
 
     <!-- Note -->
     <!-- 
-        Belajar lebih banyak tentang penggunaan v-on dan juga v-bind sebagai property pada vuejs
+        Membuat input dari user bersatu dengan konsep data-binding. Sehingga apapun yang 
+        dimasukkan oleh user, kita langsung bisa melihat hasilnya
     -->
 
     <!-- Development -->
@@ -31,16 +42,10 @@
     <script>
         var vm = new Vue({
             el: "#app",
-            data: {  
-                 url:"https://muhammad-amien.web.app"
-            },  
-            methods:{
-                boom: function(text){
-                    alert('booomm -> '+text)
-                },
-                cekidot:function(message){ 
-                    alert("cekidot terpanggil")
-                }
+            data: {
+                text:"",
+                food:[],
+                gender:[],
             },
         }); 
     </script>
