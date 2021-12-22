@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computed properties</title>
+    <title>Conditional directives</title>
 </head>
 
 <body>
-    <div id="app">
-        a = {{a}} <br>
-        b = {{b}} <br>
-        ---------------+ <br>
-        c = {{c}} <br>
-
-        {{biodata}} <br>
+    <div id="app"> 
+        <div v-if="show">
+            {{biodata}}
+        </div>
+        <div v-else>
+            hidden
+        </div>
+        <div v-show="show">
+            v-show display
+        </div>  
     </div>
 
     <!-- Note -->
     <!-- 
-        Membuat satu propery selalu tergantung dengan property 
-        lainnya dengan computed properties dari vue. 
+        Mengenal apa itu directive pada vuejs dan juga melihat 
+        contoh penggunaan conditional directive pada template html 
     -->
 
     <!-- Development -->
@@ -32,16 +35,12 @@
     <script>
         var vm = new Vue({
             el: "#app",
-            data: {
-                a: 5,
-                b: 2,
+            data: { 
                 name: "Muhammad Amien",
-                umur: 24,
+                umur: 24, 
+                show: false,
             },
-            computed: {
-                c: function () {
-                    return this.a + this.b;
-                },
+            computed: { 
                 biodata: {
                     get: function () {
                         return this.name+" Umur: "+ this.umur
@@ -51,7 +50,7 @@
                         this.name = credential[0]
                         this.umur = credential[1]
                     }
-                }
+                }, 
             }
         }); 
     </script>
