@@ -5,26 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditional directives</title>
+    <title>Loop list directive</title>
 </head>
 
 <body>
     <div id="app"> 
-        <div v-if="show">
-            {{biodata}}
-        </div>
-        <div v-else>
-            hidden
-        </div>
-        <div v-show="show">
-            v-show display
-        </div>  
+        <h1>Loop v-for</h1>
+        <div v-for="(member, key, index) in members">
+            {{key}} : {{member}} - [{{index}}]
+        </div> 
     </div>
 
     <!-- Note -->
     <!-- 
-        Mengenal apa itu directive pada vuejs dan juga melihat 
-        contoh penggunaan conditional directive pada template html 
+        Mengenal apa itu loop/list directive pada vuejs dan juga melihat 
+        contoh penggunaan list directive pada vue js 
     -->
 
     <!-- Development -->
@@ -36,22 +31,12 @@
         var vm = new Vue({
             el: "#app",
             data: { 
-                name: "Muhammad Amien",
-                umur: 24, 
-                show: false,
-            },
-            computed: { 
-                biodata: {
-                    get: function () {
-                        return this.name+" Umur: "+ this.umur
-                    },
-                    set: function (params) {
-                        const credential = params.split(" ")
-                        this.name = credential[0]
-                        this.umur = credential[1]
-                    }
-                }, 
-            }
+                members:{
+                    nama:"Amien",
+                    umur:24,
+                    language:"Indonesia",
+                },
+            }, 
         }); 
     </script>
 </body>
