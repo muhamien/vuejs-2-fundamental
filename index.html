@@ -5,33 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input binding</title>
+    <title>Componenets vuejs</title>
 </head>
 
 <body>
-    <div id="app">
-        <input type="text" v-model="text">
-        <p>{{text}}</p>
-
-        <input type="checkbox" v-model="food" value="Pizza"> Pizza
-        <input type="checkbox" v-model="food" value="Sate"> Sate
-        <input type="checkbox" v-model="food" value="Bakso">Bakso
-        <input type="checkbox" v-model="food" value="Mie Ayam">Mie Ayam
-        <input type="checkbox" v-model="food" value="Burger">Burger
-        <p>{{food}}</p>
-
-
-        <input type="radio" v-model="gender" value="Cowo">Cowo
-        <input type="radio" v-model="gender" value="Cewe">Cewe
-        <input type="radio" v-model="gender" value="Unknown">Unknown
-        <p>{{gender}}</p>
-
+    <div id="app"> 
+        <template-baru :name="nama" :age="umur"></template-baru>
     </div>
+
+    <template id="post-template">
+        <div>
+            <ul>
+                <li>{{ name }}</li>
+                <li>{{ age }}</li>
+            </ul>
+        </div>
+    </template>
 
     <!-- Note -->
     <!-- 
-        Membuat input dari user bersatu dengan konsep data-binding. Sehingga apapun yang 
-        dimasukkan oleh user, kita langsung bisa melihat hasilnya
+        Salah satu feature dari vue js yaitu component, membuat sistem template 
+        untuk bagian-bagian html yang ingin kita tampilkan berkali-kali
     -->
 
     <!-- Development -->
@@ -39,13 +33,19 @@
     <!-- Production -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
 
-    <script>
+    <script> 
+        
+        // define dan register
+        Vue.component('template-baru',{
+            template: '#post-template',
+            props: ['name','age']
+        })
+
         var vm = new Vue({
             el: "#app",
             data: {
-                text:"",
-                food:[],
-                gender:[],
+                nama: "Muhammad Amien",
+                umur: 24, 
             },
         }); 
     </script>
