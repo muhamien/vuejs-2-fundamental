@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loop list methode</title>
+    <title>Menggunakan filter</title>
 </head>
 
 <body>
     <div id="app"> 
         <h1>Loop v-for</h1>
-        <div v-for="member in members" :key="member.id" track-by="index">
+        <div v-for="member in filterMembers" :key="member.id">
             {{member.nama}} umur {{member.umur}} tahun
         </div>
     </div>
@@ -34,8 +34,17 @@
                     {id:1,nama:"Amien",umur:24},
                     {id:2,nama:"Muhammad",umur:25},
                     {id:3,nama:"Rauf",umur:27},
-                ]
+                ],
+                cari:"Amien",
             }, 
+            computed:{
+                filterMembers: function(){
+                    return this.members.filter((item)=>{
+                        const q = item.nama.match(this.cari) 
+                        return q
+                    })
+                }
+            }
         }); 
     </script>
 </body>
