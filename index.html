@@ -5,27 +5,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Componenets vuejs</title>
+    <title>Dynamic component</title>
+    <style>
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .2s ease;
+        }
+
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app"> 
-        <template-baru :name="nama" :age="umur"></template-baru>
+    <div id="app">
+        <ul>
+            <h2>Menu</h2>
+            <li><a href="#" @click="currentView='home'">Home</a></li>
+            <li><a href="#" @click="currentView='member'">Member</a></li>
+        </ul>
+        <transition name="fade" mode="out-in" appear>
+            <component :is="currentView"></component>
+        </transition>
     </div>
 
-    <template id="post-template">
+    <template id="home-template">
         <div>
+            <h1>Home Page</h1>
             <ul>
-                <li>{{ name }}</li>
-                <li>{{ age }}</li>
+                <li v-for="list in lists" :key="list.id">{{list.name}}</li>
             </ul>
+        </div>
+    </template>
+    <template id="member-template">
+        <div>
+            <h1>Members Page</h1>
+            {{members}}
         </div>
     </template>
 
     <!-- Note -->
     <!-- 
-        Salah satu feature dari vue js yaitu component, membuat sistem template 
-        untuk bagian-bagian html yang ingin kita tampilkan berkali-kali
+        Masih tentang component, kali ini kita akan berkenalan dengan 
+        konsep dynamic component pada Vuejs, yang bisa 
+        kita manfaatkan sebagai sistem routing sederhana 
+        untuk membuat SPA (Single Page Application)
     -->
 
     <!-- Development -->
@@ -33,19 +57,34 @@
     <!-- Production -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
 
-    <script> 
-        
-        // define dan register
-        Vue.component('template-baru',{
-            template: '#post-template',
-            props: ['name','age']
+    <script>
+
+        // define dan register component
+        Vue.component('home', {
+            template: '#home-template',
+            data: function () {
+                return {
+                    lists: [
+                        { id: 1, name: "Muhammad", age: 24 },
+                        { id: 2, name: "Amien", age: 22 },
+                        { id: 3, name: "Rauf", age: 23 },
+                    ],
+                }
+            },
+        })
+        Vue.component('member', {
+            template: '#member-template',
+            data: function () {
+                return {
+                    members: ['asik', 'basik', 'casik', 'dasik'],
+                }
+            },
         })
 
         var vm = new Vue({
             el: "#app",
             data: {
-                nama: "Muhammad Amien",
-                umur: 24, 
+                currentView: "home", 
             },
         }); 
     </script>
