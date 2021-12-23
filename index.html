@@ -5,16 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic component</title>
-    <style>
-        .fade-enter-active, .fade-leave-active {
-            transition: opacity .2s ease;
-        }
+    <title>Transition VueJS with animate.css</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
-        .fade-enter, .fade-leave-to {
-            opacity: 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -24,7 +17,11 @@
             <li><a href="#" @click="currentView='home'">Home</a></li>
             <li><a href="#" @click="currentView='member'">Member</a></li>
         </ul>
-        <transition name="fade" mode="out-in" appear>
+        <transition 
+            name="custom-classes-transition" 
+            enter-active-class="animated bounceInUp"
+            leave-active-class="animated bounceOutUp" 
+            :duration="{ enter: 5000, leave: 800 }">
             <component :is="currentView"></component>
         </transition>
     </div>
@@ -46,10 +43,7 @@
 
     <!-- Note -->
     <!-- 
-        Masih tentang component, kali ini kita akan berkenalan dengan 
-        konsep dynamic component pada Vuejs, yang bisa 
-        kita manfaatkan sebagai sistem routing sederhana 
-        untuk membuat SPA (Single Page Application)
+        Melakukan transisi (transition) css dengan mudah melalui attribut di vuejs
     -->
 
     <!-- Development -->
@@ -84,7 +78,8 @@
         var vm = new Vue({
             el: "#app",
             data: {
-                currentView: "home", 
+                currentView: "home",
+                show: true
             },
         }); 
     </script>
